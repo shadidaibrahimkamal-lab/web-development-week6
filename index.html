@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f8f4">
+    <title>SpendWise — Your money, in focus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="SpendWise home">
+          <span class="brand-mark" aria-hidden="true">s</span>
+          <span>spend<span class="brand-light">wise</span></span>
+        </a>
+        <p class="topbar-note"><span class="status-dot" aria-hidden="true"></span> Your money, in focus</p>
+      </header>
+
+      <main>
+        <section class="welcome">
+          <div>
+            <p class="eyebrow">YOUR MONTHLY OVERVIEW</p>
+            <h1>A little clarity<br>goes a <span>long way.</span></h1>
+            <p class="welcome-copy">Keep your spending on track, one day at a time.</p>
+          </div>
+          <div class="date-pill"><span aria-hidden="true">◷</span> <span id="current-month"></span></div>
+        </section>
+
+        <section class="summary-grid" aria-label="Budget summary">
+          <article class="summary-card budget-card">
+            <div class="card-label"><span class="label-icon">◎</span> MONTHLY BUDGET</div>
+            <p class="summary-value" id="budget-value">KSh 0</p>
+            <form class="budget-form" id="budget-form">
+              <label class="sr-only" for="budget-input">Monthly budget in Kenyan shillings</label>
+              <span aria-hidden="true">KSh</span>
+              <input id="budget-input" name="budget" type="number" min="1" step="1" placeholder="Set your budget" required>
+              <button type="submit">Set</button>
+            </form>
+          </article>
+
+          <article class="summary-card spent-card">
+            <div class="card-label"><span class="label-icon">↗</span> TOTAL SPENT</div>
+            <p class="summary-value" id="spent-value">KSh 0</p>
+            <p class="summary-note" id="spent-note">Add an expense to get started</p>
+          </article>
+
+          <article class="summary-card remaining-card">
+            <div class="card-label"><span class="label-icon">↘</span> LEFT TO SPEND</div>
+            <p class="summary-value" id="remaining-value">KSh 0</p>
+            <div class="progress-track" role="progressbar" aria-label="Monthly budget used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="budget-progress">
+              <span id="progress-fill"></span>
+            </div>
+            <p class="summary-note" id="remaining-note">Set a budget to see your progress</p>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <section class="panel add-panel" aria-labelledby="add-heading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">MAKE IT COUNT</p>
+                <h2 id="add-heading">Add an expense</h2>
+              </div>
+              <span class="heading-icon" aria-hidden="true">＋</span>
+            </div>
+            <form id="expense-form">
+              <label for="expense-name">What did you spend on?</label>
+              <input id="expense-name" name="name" type="text" maxlength="60" placeholder="e.g. Weekly groceries" required>
+
+              <div class="form-row">
+                <div>
+                  <label for="expense-amount">Amount</label>
+                  <div class="amount-input"><span aria-hidden="true">KSh</span><input id="expense-amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div>
+                </div>
+                <div>
+                  <label for="expense-category">Category</label>
+                  <select id="expense-category" name="category" required>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Health">Health</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <label for="expense-date">Date</label>
+              <input id="expense-date" name="date" type="date" required>
+              <button class="primary-button" type="submit">Add to my expenses <span aria-hidden="true">→</span></button>
+              <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <section class="panel expenses-panel" aria-labelledby="expenses-heading">
+            <div class="panel-heading expenses-heading">
+              <div>
+                <p class="eyebrow">YOUR ACTIVITY</p>
+                <h2 id="expenses-heading">Recent expenses <span class="count-badge" id="expense-count">0</span></h2>
+              </div>
+              <label class="sr-only" for="category-filter">Filter expenses by category</label>
+              <select id="category-filter" class="filter-select">
+                <option value="All">All categories</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Bills">Bills</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Health">Health</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="expense-list" id="expense-list" aria-live="polite"></div>
+            <p class="list-footer" id="list-footer"></p>
+          </section>
+        </section>
+        <p class="privacy-note"><span aria-hidden="true">♧</span> Your data stays on this device. Spend mindfully.</p>
+      </main>
+    </div>
+  </body>
+</html>
